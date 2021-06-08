@@ -1,0 +1,22 @@
+<%- include('header') -%>
+
+<h1 class="text-center p-5">Helyiség módosítása</h1>
+
+
+<div class="d-flex justify-content-center">
+    <form class="w-25" method="POST">
+        <div class="form-group">
+            <label for="nevInput">Helyiség neve</label> <!-- a label for-ja a hivatkozott input id-jával kell megegyezzen -->
+            <input type="text" class="form-control" name="nev" id="nevInput" value="<%= (typeof data.helyiseg.nev === 'undefined') ? '' : data.helyiseg.nev %>">
+        </div>
+        <div class="form-group">
+            <label for="megjegyzesInput">Megjegyzés</label>
+            <input type="text" class="form-control" name="megjegyzes" id="megjegyzesInput" placeholder="Megjegyzés" value="<%= (typeof data.helyiseg.megjegyzes === 'undefined') ? '' : data.helyiseg.megjegyzes %>">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Mentés</button>
+        <a class="btn btn-link" href="/">Mégse</a>
+    </form>
+</div>
+
+<%- include('footer') -%>

@@ -1,0 +1,32 @@
+<%- include('header') -%>
+
+    <h1 class="text-center p-5">Irodai logisztikai rendszer</h1>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <table class="table table-striped table-bordered">
+            <tr>
+              <th>Helyiség neve</th>
+              <th>&nbsp</th>
+            </tr>
+              <% data.helyiseg.forEach(function(egyHelyiseg){ %>
+                <tr>
+                  <td> <%= egyHelyiseg.nev %> </td>
+                  <td>
+                    <a href="/helyiseg/<%=egyHelyiseg._id%>" class="btn btn-sm btn-primary">Megnyitás</a>
+                    <a href="/helyiseg/edit/<%=egyHelyiseg._id%>" class="btn btn-sm btn-outline-primary"><i class="fas fa-edit"></i> Módosítás</a>
+                    <a href="/helyiseg/delete/<%=egyHelyiseg._id%>" class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i> Törlés</a>
+                  </td>
+                </tr>
+              <% }); %>
+
+          </table>
+
+          <a class="btn btn-primary" href="/helyiseg/new">Új helyiség felvétele</a>
+
+        </div>
+      </div> <!-- End of row -->
+    </div> <!-- End of container -->
+
+<%- include('footer') -%>
