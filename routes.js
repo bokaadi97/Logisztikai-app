@@ -1,6 +1,8 @@
+const passport = require('passport');
 const auth = require('./middleware/auth/auth');
 const checkPass = require('./middleware/auth/checkPass');
 const logout = require('./middleware/auth/logout');
+const register = require('./middleware/auth/register');
 
 const delEszkoz = require('./middleware/eszkoz/delEszkoz');
 const getEszkoz = require('./middleware/eszkoz/getEszkoz');
@@ -16,12 +18,14 @@ const render = require('./middleware/render');
 
 const eszkozModel = require('./models/eszkoz');
 const helyisegModel = require('./models/helyiseg');
+const felhasznaloModel = require('./models/felhasznalo');
 
 module.exports = (app) => {
 
     const objRepo = {
         helyisegModel: helyisegModel,
-        eszkozModel: eszkozModel
+        eszkozModel: eszkozModel,
+        felhasznaloModel: felhasznaloModel
     };
 
     
@@ -86,13 +90,18 @@ module.exports = (app) => {
         delHelyiseg(objRepo)
     );
 
-    app.use('/login',
+    app.use('/login',    
         checkPass(),
         render(objRepo, 'login')
     );
 
     app.use('/logout',
         logout()
+    );
+
+    app.use('/register',
+        register(objRepo),
+        render(objRepo, 'register')
     );
 
 
